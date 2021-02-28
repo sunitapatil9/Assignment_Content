@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Created Contact Book page2</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+  <script src="scriptpage2.js"></script>
+  
+
+</head>
+<body>
+ 
+<div >
+    <h1 style="margin-left: 250px;">Contact Book</h1>
+     <div id="btnContainer">
+        <button class="btn " onclick="listView()"><i class="fa fa-bars"></i> List</button> 
+        <button class="btn active " onclick="gridView()"><i class="fa fa-th-large"></i> Grid</button>
+      </div>
+      <br>
+      <div style="display: block;">
+      <input type="text" id="myInput" placeholder="Search for names.." title="Type in a name">
+      <div style ="margin-left: 250px; margin-top: -20px;">
+        <label for="namesort">Sort By</label>
+        <select name="namesort" id="idforname" onchange=" sortfirstname()">
+           <option value="0" >unsort</option>
+          <option value="first_name">first_name</option>
+          <option value="Email">Email</option>
+      </select></div>
+      </div>
+      <br><br>
+    
+      <div id="content"></div>
+      <br><br>
+      <div class="pagination" style="margin-left: 250px;">
+        <a href="index.html">&laquo;</a>
+        <a href="index.html" >page 1</a>
+        <a href="page2.html" class="active"> page 2</a>
+      </div>
+
+      </div>
+ 
+<script>
+
+
+/* Optional: Add active class to the current button (highlight it) */
+var container = document.getElementById("btnContainer");
+var btns = container.getElementsByClassName("btn");
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function() {
+    var current = document.getElementsByClassName("active");
+    current[0].className = current[0].className.replace(" active", "");
+    this.className += " active";
+  });
+}
+
+    $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#content .column").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+</script> 
+  
+</body>
+</html>
